@@ -9,11 +9,11 @@ const Home = () => {
   return (
     <div>
       <Head>
-        <title>Fast Feedback</title>
+        <title>Agora</title>
       </Head>
 
       <main>
-        <Heading>Fast Feedback</Heading>
+        <Heading>Agora</Heading>
 
         <Text>
           Current user: <Code>{auth.user ? auth.user.email : 'None'}</Code>
