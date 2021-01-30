@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
@@ -33,11 +33,11 @@ export const getStaticPaths = async () => {
   };
 };
 
-const SiteFeedback = ({ initialFeedback }) => {
+const FeedbackPage = ({ initialFeedback }) => {
   const auth = useAuth();
   const router = useRouter();
-  const inputEl = React.useRef(null);
-  const [allFeedback, setAllFeedback] = React.useState(initialFeedback);
+  const inputEl = useRef(null);
+  const [allFeedback, setAllFeedback] = useState(initialFeedback);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -64,15 +64,17 @@ const SiteFeedback = ({ initialFeedback }) => {
       maxWidth="700px"
       margin="0 auto"
     >
-      <Box as="form" onSubmit={onSubmit}>
-        <FormControl my={8}>
-          <FormLabel htmlFor="comment">Comment</FormLabel>
-          <Input ref={inputEl} id="comment" placeholder="Leave a comment" />
-          <Button type="submit" fontWeight="medium" mt={4}>
-            Add Comment
-          </Button>
-        </FormControl>
-      </Box>
+      {auth.user && (
+        <Box as="form" onSubmit={onSubmit}>
+          <FormControl my={8}>
+            <FormLabel htmlFor="comment">Comment</FormLabel>
+            <Input ref={inputEl} id="comment" placeholder="Leave a comment" />
+            <Button type="submit" fontWeight="medium" mt={4}>
+              Add Comment
+            </Button>
+          </FormControl>
+        </Box>
+      )}
 
       {allFeedback.map(feedback => (
         <Feedback key={feedback.id} {...feedback} />
@@ -81,4 +83,4 @@ const SiteFeedback = ({ initialFeedback }) => {
   );
 };
 
-export default SiteFeedback;
+export default FeedbackPage;
