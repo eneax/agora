@@ -1,4 +1,8 @@
+import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+
 import { getAllFeedback, getAllSites } from '@/lib/db-admin';
+
+import Feedback from '@/components/feedback';
 
 export const getStaticProps = async context => {
   const { siteId } = context.params;
@@ -25,10 +29,28 @@ export const getStaticPaths = async () => {
   };
 };
 
-const SiteFeedback = ({ initialFeedback }) => {
-  console.log(initialFeedback);
+const SiteFeedback = ({ initialFeedback }) => (
+  <Box
+    display="flex"
+    flexDirection="column"
+    width="full"
+    maxWidth="700px"
+    margin="0 auto"
+  >
+    <Box as="form">
+      <FormControl my={8}>
+        <FormLabel htmlFor="comment">Comment</FormLabel>
+        <Input id="comment" placeholder="Leave a comment" />
+        <Button type="submit" fontWeight="medium" mt={4}>
+          Add Comment
+        </Button>
+      </FormControl>
+    </Box>
 
-  return <h1>Hi, there!!!</h1>;
-};
+    {initialFeedback.map(feedback => (
+      <Feedback key={feedback.id} {...feedback} />
+    ))}
+  </Box>
+);
 
 export default SiteFeedback;
