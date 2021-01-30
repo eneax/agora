@@ -10,7 +10,7 @@ import Feedback from '@/components/feedback';
 
 export const getStaticProps = async context => {
   const { siteId } = context.params;
-  const feedback = await getAllFeedback(siteId);
+  const { feedback } = await getAllFeedback(siteId);
 
   return {
     props: {
@@ -20,7 +20,7 @@ export const getStaticProps = async context => {
 };
 
 export const getStaticPaths = async () => {
-  const sites = await getAllSites();
+  const { sites } = await getAllSites();
   const paths = sites.map(site => ({
     params: {
       siteId: site.id.toString(),
