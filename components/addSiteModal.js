@@ -44,7 +44,7 @@ const AddSiteModal = ({ children }) => {
       isClosable: true,
     });
     mutate(
-      '/api/sites',
+      ['/api/sites', auth.user.token],
       async data => ({ sites: [...data.sites, newSite] }),
       false // use 'false' to mutate without revalidation
     );
