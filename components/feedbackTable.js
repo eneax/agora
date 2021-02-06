@@ -25,8 +25,8 @@ const FeedbackTable = ({ allFeedback }) => (
           </Td>
           <Td>
             <Switch
-              color="green"
-              defaultIsChecked={feedback.status === 'active'}
+              colorScheme="green"
+              defaultChecked={feedback.status === 'active'}
             />
           </Td>
           <Td>
