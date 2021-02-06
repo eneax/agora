@@ -5,8 +5,9 @@ import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
 
 import DashboardContainer from '@/components/dashboardContainer';
-import SiteTableSkeleton from '@/components/siteTableSkeleton';
 import SiteTable from '@/components/siteTable';
+import SiteTableHeader from '@/components/siteTableHeader';
+import SiteTableSkeleton from '@/components/siteTableSkeleton';
 import EmptyState from '@/components/emptyState';
 
 const Dashboard = () => {
@@ -18,6 +19,7 @@ const Dashboard = () => {
   if (!data) {
     return (
       <DashboardContainer>
+        <SiteTableHeader />
         <SiteTableSkeleton />
       </DashboardContainer>
     );
@@ -25,7 +27,8 @@ const Dashboard = () => {
 
   return (
     <DashboardContainer>
-      {data.sites ? <SiteTable sites={data.sites} /> : <EmptyState />}
+      <SiteTableHeader />
+      {data.sites.length ? <SiteTable sites={data.sites} /> : <EmptyState />}
     </DashboardContainer>
   );
 };
