@@ -33,15 +33,8 @@ const Home = () => {
           <title>Agora</title>
         </Head>
 
-        <Icon as={MdGroupWork} name="logo" color="black" w={10} h={10} />
+        <Icon as={MdGroupWork} name="logo" color="black" w={16} h={16} />
 
-        <Text my={4}>
-          <Text as="span" fontWeight="bold" display="inline">
-            Agora
-          </Text>{' '}
-          is the easiest way to add comments or reviews to your static site.
-          It's still a work-in-progress, but you can try it out by logging in.
-        </Text>
         {auth.user ? (
           <Button
             as="a"
@@ -79,23 +72,6 @@ const Home = () => {
               }}
             >
               Sign In with GitHub
-            </Button>
-            <Button
-              onClick={() => auth.signinWithGoogle()}
-              backgroundColor="white"
-              color="gray.900"
-              variant="outline"
-              fontWeight="medium"
-              leftIcon={<Icon as={FcGoogle} name="Google Logo" w={8} h={8} />}
-              mt={4}
-              size="lg"
-              _hover={{ bg: 'gray.100' }}
-              _active={{
-                bg: 'gray.100',
-                transform: 'scale(0.95)',
-              }}
-            >
-              Sign In with Google
             </Button>
           </Stack>
         )}
